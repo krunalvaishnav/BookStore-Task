@@ -4,9 +4,11 @@ This project is a RESTful API built using **Node.js** and **Express** that suppo
 
 - JWT-based Authentication
 - CRUD operations for books
+- Serch By Genre
 - File-based data persistence using JSON files
 - Protected routes
 - Postman support
+  
 
 ---
 
