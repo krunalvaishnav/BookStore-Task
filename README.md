@@ -108,3 +108,4 @@ Response like this:
 | POST   | `/api/books`     | Add a new book             |
 | PUT    | `/api/books/:id` | Update a book (only owner) |
 | DELETE | `/api/books/:id` | Delete a book (only owner) |
+| GET    | `/api/books/serch?genre=` | Filter books by genre |
