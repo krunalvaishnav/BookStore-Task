@@ -1,0 +1,21 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "license": "ISC",
+    "author": "",
+    "main": "server.js",
+    "scripts": {
+        "server": "nodemon server.js"
+    },
+    "dependencies": {
+        "express": "^4.21.2",
+        "multer": "^1.4.5-lts.1",
+        "nodemon": "^3.1.9",
+        "bcrypt": "^6.0.0",
+        "jsonwebtoken": "^9.0.2",
+        "uuid": "^11.1.0",
+        "dotenv": "^17.0.1"
+
+    }
+}
