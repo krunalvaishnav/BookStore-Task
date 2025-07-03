@@ -4,6 +4,7 @@ const authMiddlewares = require("../middlewares/authMiddleware");
 const router = express.Router();
 router.use(authMiddlewares);
 
+router.get("/search", bookCtrl.getBooksByGenre);
 router.get("/", bookCtrl.getBooks);
 router.get("/:id", bookCtrl.getBookById);
 router.post("/", bookCtrl.addBooks);

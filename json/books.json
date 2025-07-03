@@ -2,24 +2,24 @@
   {
     "id": "ac7d4b14-087d-4ffa-8caf-558406bc12e6",
     "title": "1test",
-    "author": "aasdsasdd",
-    "genre": "asasddsadasd",
+    "author": "john",
+    "genre": "Fiction",
     "publishedYear": 2025,
     "userId": 1
   },
   {
     "id": "83c45dcb-b942-47ef-b075-5534196b8093",
-    "title": "update",
-    "author": "aasdsasdd",
-    "genre": "asasddsadasd",
+    "title": "2test",
+    "author": "jay",
+    "genre": "Fantasy",
     "publishedYear": 2025,
     "userId": 2
   },
   {
     "id": "ec844193-922c-4508-9ef7-7a634d3004bd",
-    "title": "4test",
-    "author": "aasdsasdd",
-    "genre": "asasddsadasd",
+    "title": "3test",
+    "author": "dhruv",
+    "genre": "Mystery",
     "publishedYear": 2025,
     "userId": 3
   }

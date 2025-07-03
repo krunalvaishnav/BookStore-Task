@@ -126,3 +126,27 @@ exports.updateBookById = async (req, res) => {
     console.error(error);
   }
 };
+
+exports.getBooksByGenre = async (req, res) => {
+  try {
+    const { genre } = req.query;
+    console.log(genre);
+
+    if (!genre) {
+      return res.status(400).json({ message: "query is required" });
+    }
+
+    const books = await bookModel.getBooks();
+
+    const filteredBooks = books.filter(
+      (book) =>
+        book.genre && book.genre.toLowerCase().includes(genre.toLowerCase())
+    );
+
+    console.log("filteredBooks", filteredBooks);
+
+    res.status(200).json(filteredBooks);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to filter books by genre", error });
+  }
+};
