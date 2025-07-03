@@ -29,12 +29,12 @@ exports.getBookById = async (req, res) => {
 exports.addBooks = async (req, res) => {
   console.log("body", req.body);
   try {
-    // const userId = req.user.id;
-    // if (!userId) {
-    //   return res
-    //     .status(400)
-    //     .json({ message: "user not found! Please Create account" });
-    // }
+    const userId = req.user.id;
+    if (!userId) {
+      return res
+        .status(400)
+        .json({ message: "user not found! Please Create account" });
+    }
 
     const { title, author, genre, publishedYear } = req.body;
 
@@ -52,7 +52,7 @@ exports.addBooks = async (req, res) => {
       author,
       genre,
       publishedYear,
-      //   userId,
+      userId,
     };
     existingBooks.push(newBook);
     await bookModel.add_update_Book(existingBooks);
@@ -65,7 +65,7 @@ exports.addBooks = async (req, res) => {
 
 exports.deleteBook = async (req, res) => {
   const bookID = req.params.id;
-  //   const userId = req.user.id;
+  const userId = req.user.id;
   //   console.log("delete book id", bookID);
   //   console.log("user id", userId);
   try {
@@ -76,12 +76,12 @@ exports.deleteBook = async (req, res) => {
     }
     // console.log(book);
 
-    // if (book.userId !== userId) {
-    //   return res.status(403).json({
-    //     error:
-    //       "You can not own this book that why you can not delete this book",
-    //   });
-    // }
+    if (book.userId !== userId) {
+      return res.status(403).json({
+        error:
+          "You do not own this book, so you are not authorized to delete it.",
+      });
+    }
     const afterDeleteBooks = books.filter((b) => b.id !== req.params.id);
     await bookModel.add_update_Book(afterDeleteBooks);
     res.status(200).json({ message: "Book deleted successfully" });
@@ -94,24 +94,26 @@ exports.deleteBook = async (req, res) => {
 exports.updateBookById = async (req, res) => {
   const bookID = req.params.id;
   const updateBodyData = req.body;
-  //   const userId = req.user.id;
-//   console.log("delete book id", bookID);
-  //   console.log("user id", userId);
+  const userId = req.user.id;
+  //   console.log("delete book id", bookID);
+  // console.log("user id", userId);
 
   try {
     const books = await bookModel.getBooks();
     const bookIndex = books.findIndex((e) => e.id === bookID);
     // console.log("books", books);
+    // console.log("bookIndex", bookIndex);
     if (bookIndex === -1) {
       return res.status(404).json({ error: "Book not found" });
     }
 
-    //  if (book.userId !== userId) {
-    //   return res.status(403).json({
-    //     error:
-    //       "You can not own this book that why you can not delete this book",
-    //   });
-    // }
+    if (books[bookIndex].userId !== userId) {
+      return res.status(403).json({
+        error:
+          "You do not own this book, so you are not authorized to update it.",
+      });
+    }
+
     books[bookIndex] = {
       ...books[bookIndex],
       ...updateBodyData,
